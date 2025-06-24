@@ -1,0 +1,13 @@
+{% extends 'admin/base_admin.html' %}
+
+{% block content %}
+<h2>Detalle de Factura #{{ factura.id }}</h2>
+
+<p><strong>Cliente:</strong> {{ factura.cliente.nombre }}</p>
+<p><strong>Fecha:</strong> {{ factura.fecha.strftime('%d/%m/%Y') }}</p>
+<p><strong>Total:</strong> Bs. {{ factura.total }}</p>
+
+<!-- Aquí puedes agregar más detalles de la factura -->
+
+<a href="{{ url_for('admin.ventas') }}" class="btn btn-secondary mt-3">Volver a ventas</a>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'admin/base_admin.html' %}
+
+{% block content %}
+<a href="{{ url_for('admin.dashboard') }}" class="btn btn-secondary mb-3">← Volver al Dashboard</a>
+
+<h2>Gestión de Ventas</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Fecha</th>
+            <th>Total</th>
+            <th>Usuario</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for venta in ventas %}
+        <tr>
+            <td>{{ venta.id }}</td>
+            <td>{{ venta.fecha.strftime('%d/%m/%Y %H:%M') }}</td>
+            <td>{{ venta.total }} Bs.</td>
+            <td>{{ venta.usuario.username }}</td>
+            <td>
+                <a href="{{ url_for('admin.ver_factura', id=venta.id) }}" class="btn btn-info btn-sm">Ver Factura</a>
+                <a href="{{ url_for('admin.eliminar_venta', id=venta.id) }}" class="btn btn-danger btn-sm">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

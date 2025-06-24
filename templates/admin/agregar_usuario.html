@@ -1,0 +1,38 @@
+{% extends "admin/base_admin.html" %}
+
+{% block content %}
+<h2>Registrar Usuario</h2>
+
+<form method="post">
+  <div class="mb-3">
+    <label for="nombre" class="form-label">Nombre</label>
+    <input type="text" class="form-control" id="nombre" name="nombre" required>
+  </div>
+  <div class="mb-3">
+    <label for="email" class="form-label">Correo electrónico</label>
+    <input type="email" class="form-control" id="email" name="email" required>
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Contraseña</label>
+    <input type="password" class="form-control" id="password" name="password" required>
+  </div>
+  <div class="mb-3">
+    <label for="rol" class="form-label">Rol</label>
+    <select class="form-select" id="rol" name="rol" required>
+      <option value="cliente">Cliente</option>
+      <option value="admin">Administrador</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label for="telefono" class="form-label">Teléfono</label>
+    <input type="text" class="form-control" id="telefono" name="telefono">
+  </div>
+  <div class="mb-3">
+    <label for="direccion" class="form-label">Dirección</label>
+    <input type="text" class="form-control" id="direccion" name="direccion">
+  </div>
+
+  <button type="submit" class="btn btn-success">Guardar</button>
+  <a href="{{ url_for('admin.usuarios') }}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}

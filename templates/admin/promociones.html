@@ -1,0 +1,41 @@
+{% extends 'admin/base_admin.html' %}
+
+{% block title %}Promociones{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <a href="{{ url_for('admin.dashboard') }}" class="btn btn-secondary mb-3">← Volver al Dashboard</a>
+
+    <h1>Gestión de Promociones</h1>
+
+    <a href="{{ url_for('admin.nueva_promocion') }}" class="btn btn-primary mb-3">Agregar Promoción</a>
+
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>nombre</th>
+                <th>Descripción</th>
+                <th>Descuento (%)</th>
+                <th>Válido Hasta</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for promo in promociones %}
+            <tr>
+                <td>{{ promo.id }}</td>
+                <td>{{ promo.nombre }}</td>
+                <td>{{ promo.descripcion }}</td>
+                <td>{{ promo.descuento }}</td>
+                <td>{{ promo.fecha_fin.strftime('%Y-%m-%d') }}</td>
+                <td>
+                    <a href="{{ url_for('admin.editar_promocion', id=promo.id) }}" class="btn btn-sm btn-warning">Editar</a>
+                    <a href="{{ url_for('admin.eliminar_promocion', id=promo.id) }}" class="btn btn-sm btn-danger">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

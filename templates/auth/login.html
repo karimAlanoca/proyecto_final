@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow rounded-4" style="border: none; box-shadow: 0 8px 20px rgba(255, 75, 43, 0.3);">
+                <div class="card-header text-white text-center" style="background: linear-gradient(90deg, #ff416c, #ff4b2b); border-top-left-radius: .75rem; border-top-right-radius: .75rem;">
+                    <h3 class="mb-0 fw-bold">Inicio de Sesión</h3>
+                </div>
+                <div class="card-body px-5 py-4">
+                    <form method="POST" novalidate>
+                        {{ form.hidden_tag() }}
+
+                        <div class="form-group mb-4">
+                            {{ form.email.label(class="form-label fw-semibold") }}
+                            {{ form.email(class="form-control shadow-sm", placeholder="Correo electrónico", autocomplete="off") }}
+                        </div>
+
+                        <div class="form-group mb-4">
+                            {{ form.password.label(class="form-label fw-semibold") }}
+                            {{ form.password(class="form-control shadow-sm", placeholder="Contraseña") }}
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <a href="{{ url_for('index') }}" class="btn btn-outline-secondary fw-semibold" style="border-radius: 50px; padding: 0.6rem 2rem;">
+                            Cancelar
+                            </a>
+                            <button type="submit" class="btn btn-gradient btn-lg fw-semibold" style="background: linear-gradient(90deg, #ff416c, #ff4b2b); color: white; border-radius: 50px; box-shadow: 0 6px 12px rgba(255, 75, 43, 0.4); transition: transform 0.3s ease;">
+                                Ingresar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <p class="text-center mt-3 text-muted">
+                ¿No tienes cuenta? <a href="{{ url_for('auth.register') }}" style="color: #ff416c; font-weight: 600;">Regístrate aquí</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<style>
+    button.btn-gradient:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 20px rgba(255, 75, 43, 0.6);
+        color: #fff;
+        text-decoration: none;
+    }
+    input.form-control:focus {
+        border-color: #ff416c;
+        box-shadow: 0 0 8px rgba(255, 65, 108, 0.6);
+        outline: none;
+    }
+</style>
+{% endblock %}

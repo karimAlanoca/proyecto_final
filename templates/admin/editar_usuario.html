@@ -1,0 +1,11 @@
+{% extends "admin/base_admin.html" %}
+
+{% block content %}
+<h2>Editar Usuario</h2>
+<form method="post">
+  <label>Nombre:</label>
+  <input type="text" name="nombre" value="{{ usuario.username }}" required>
+  <!-- más campos según modelo -->
+  <button type="submit" class="btn btn-success">Guardar</button>
+</form>
+{% endblock %}

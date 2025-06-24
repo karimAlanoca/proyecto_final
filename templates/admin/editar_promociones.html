@@ -1,0 +1,35 @@
+{% extends 'admin/base_admin.html' %}
+{% block title %}Editar Promoción{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Editar Promoción</h2>
+    <form method="post" action="{{ url_for('admin.editar_promocion', id=promocion.id) }}">
+        <div class="mb-3">
+            <label class="form-label">Título</label>
+            <input type="text" name="nombre" value="{{ promocion.nombre }}" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Descripción</label>
+            <textarea name="descripcion" class="form-control" required>{{ promocion.descripcion }}</textarea>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Descuento (%)</label>
+            <input type="number" name="descuento" value="{{ promocion.descuento }}" class="form-control" min="0" max="100" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Fecha de Inicio</label>
+            <input type="date" name="fecha_inicio" value="{{ promocion.fecha_inicio.strftime('%Y-%m-%d') }}" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Fecha Fin</label>
+            <input type="date" name="fecha_fin" value="{{ promocion.fecha_fin.strftime('%Y-%m-%d') }}" class="form-control" required>
+        </div>
+        <div class="form-check mb-3">
+            <input type="checkbox" name="activa" class="form-check-input" id="activaCheckbox" {% if promocion.activa %}checked{% endif %}>
+            <label class="form-check-label" for="activaCheckbox">¿Promoción Activa?</label>
+        </div>
+        <button type="submit" class="btn btn-warning">Actualizar</button>
+    </form>
+</div>
+{% endblock %}

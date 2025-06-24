@@ -1,0 +1,75 @@
+{% extends 'admin/base_admin.html' %}
+
+{% block title %}Panel de Administración{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Dashboard - Administrador</h1>
+    <div class="row g-4">
+
+        <div class="container mt-4">
+            <div class="d-flex justify-content-end mb-3">
+                <a href="{{ url_for('auth.logout') }}" 
+                class="btn btn-danger"
+                onclick="return confirm('¿Estás seguro que deseas cerrar sesión?');">
+                Cerrar Sesión
+                </a>
+            </div>
+        </div>
+
+
+        <div class="col-md-4">
+            <a href="{{ url_for('admin.productos') }}" class="text-decoration-none">
+                <div class="card text-white bg-primary shadow">
+                    <div class="card-body">
+                        <h5 class="card-title">Productos</h5>
+                        <p class="card-text">Administrar productos disponibles</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+
+        <div class="col-md-4">
+            <a href="{{ url_for('admin.usuarios') }}" class="text-decoration-none">
+                <div class="card text-white bg-secondary shadow">
+                    <div class="card-body">
+                        <h5 class="card-title">Usuarios</h5>
+                        <p class="card-text">Gestión de cuentas de usuarios</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a href="{{ url_for('admin.ventas') }}" class="text-decoration-none">
+                <div class="card text-white bg-success shadow">
+                    <div class="card-body">
+                        <h5 class="card-title">Ventas</h5>
+                        <p class="card-text">Historial y control de ventas</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a href="{{ url_for('admin.proveedores') }}" class="text-decoration-none">
+                <div class="card text-white bg-info shadow">
+                    <div class="card-body">
+                        <h5 class="card-title">Proveedores</h5>
+                        <p class="card-text">Administración de proveedores</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a href="{{ url_for('admin.promociones') }}" class="text-decoration-none">
+                <div class="card text-white bg-warning shadow">
+                    <div class="card-body">
+                        <h5 class="card-title">Promociones</h5>
+                        <p class="card-text">Gestión de ofertas y descuentos</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

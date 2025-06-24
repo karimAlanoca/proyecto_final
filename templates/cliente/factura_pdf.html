@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Factura #{{ factura.id }}</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      color: #222;
+    }
+    h1, h2 {
+      color: #2c3e50;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #ecf0f1;
+    }
+    .total {
+      font-weight: bold;
+      font-size: 1.2em;
+      text-align: right;
+      margin-top: 15px;
+    }
+    .footer {
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <h1>Factura #{{ factura.id }}</h1>
+  <p><strong>Cliente:</strong> {{ factura.cliente.nombre }}</p>
+  <p><strong>Correo:</strong> {{ factura.cliente.email }}</p>
+  <p><strong>Fecha:</strong> {{ factura.fecha.strftime('%d/%m/%Y') }}</p>
+
+  <h2>Detalle de Compra</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Producto</th>
+        <th>Cantidad</th>
+        <th>Precio Unitario</th>
+        <th>Subtotal</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for detalle in factura.detalles %}
+      <tr>
+        <td>{{ detalle.producto.nombre }}</td>
+        <td>{{ detalle.cantidad }}</td>
+        <td>Bs. {{ "%.2f"|format(detalle.precio_unitario) }}</td>
+        <td>Bs. {{ "%.2f"|format(detalle.subtotal) }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <p class="total">Total a pagar: Bs. {{ "%.2f"|format(factura.total) }}</p>
+
+  <div class="footer">
+    <p>Gracias por su compra.</p>
+  </div>
+</body>
+</html>

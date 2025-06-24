@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block title %}Registro{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center align-items-center">
+        <!-- Formulario -->
+        <div class="col-md-5">
+            <div class="card shadow-lg rounded-4 p-4" style="border: none; box-shadow: 0 10px 25px rgba(255, 75, 43, 0.3);">
+                <h2 class="mb-4 text-center fw-bold" style="color: #ff4b2b;">Registro de Usuario</h2>
+                <form method="POST" action="" novalidate>
+                    <!-- {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                    {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %} -->
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label fw-semibold">Correo electrónico</label>
+                        <input type="email" class="form-control shadow-sm" name="email" id="email" placeholder="ejemplo@correo.com" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password" class="form-label fw-semibold">Contraseña</label>
+                        <input type="password" class="form-control shadow-sm" name="password" id="password" placeholder="••••••••" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="rol-selector" class="form-label fw-semibold">Rol</label>
+                        <select name="rol" id="rol-selector" class="form-select shadow-sm" required>
+                            <option value="cliente">Cliente</option>
+                            <option value="admin">Administrador</option>
+                        </select>
+                    </div>
+
+                    <div id="codigo-admin-container" class="mb-3" style="display: none;">
+                        <label for="codigo_admin" class="form-label fw-semibold">Código de Administrador</label>
+                        <input type="password" class="form-control shadow-sm" name="codigo_admin" id="codigo_admin" placeholder="Código de Administrador">
+                    </div>
+
+                    <div id="campos-cliente" style="display: none;">
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label fw-semibold">Nombre completo</label>
+                            <input type="text" class="form-control shadow-sm" name="nombre" id="nombre" placeholder="Tu nombre completo">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="telefono" class="form-label fw-semibold">Teléfono</label>
+                            <input type="tel" class="form-control shadow-sm" name="telefono" id="telefono" placeholder="(123) 456-7890">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="direccion" class="form-label fw-semibold">Dirección</label>
+                            <textarea name="direccion" id="direccion" class="form-control shadow-sm" rows="3" placeholder="Tu dirección"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between mt-4">
+                        <a href="{{ url_for('index') }}" class="btn btn-outline-secondary fw-semibold" style="border-radius: 50px; padding: 0.6rem 2rem;">
+                            Cancelar
+                        </a>
+                        <button type="submit" class="btn btn-gradient btn-lg fw-semibold" style="background: linear-gradient(90deg, #ff416c, #ff4b2b); color: white; border-radius: 50px; box-shadow: 0 6px 12px rgba(255, 75, 43, 0.4); transition: transform 0.3s ease;">
+                            Registrarse
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Imagen a la derecha -->
+        <!-- <div class="col-md-5 d-none d-md-block">
+            <img src="{{ url_for('static', filename='img/carnes_registro.jpg') }}" alt="Carnes frescas" class="img-fluid rounded-4 shadow-lg" style="max-height: 480px; object-fit: cover;">
+        </div> -->
+    </div>
+</div>
+
+<script>
+// Mostrar/ocultar campos según rol
+document.getElementById('rol-selector').addEventListener('change', function () {
+    const isCliente = this.value === 'cliente';
+    document.getElementById('campos-cliente').style.display = isCliente ? 'block' : 'none';
+    document.getElementById('codigo-admin-container').style.display = isCliente ? 'none' : 'block';
+});
+
+// Ejecutar al cargar la página
+window.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('rol-selector').dispatchEvent(new Event('change'));
+});
+</script>
+
+<style>
+    button.btn-gradient:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 20px rgba(255, 75, 43, 0.6);
+        color: #fff;
+        text-decoration: none;
+    }
+    input.form-control:focus, select.form-select:focus, textarea.form-control:focus {
+        border-color: #ff416c;
+        box-shadow: 0 0 8px rgba(255, 65, 108, 0.6);
+        outline: none;
+    }
+</style>
+{% endblock %}

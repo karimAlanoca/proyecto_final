@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="py-5 text-center bg-light rounded-4 shadow-sm" style="background: #fff8f0;">
+    <h1 class="display-4 fw-bold mb-3" style="color: #ff4b2b;">¡Bienvenido a <span style="color:#ff416c;">Sabor Cárnico</span>! 🥩🔥</h1>
+    <p class="lead mb-4 text-secondary" style="font-size: 1.25rem; max-width: 600px; margin: auto;">
+        Descubre la mejor selección de carnes frescas al alcance de un clic.
+    </p>
+    <hr class="my-4 mx-auto" style="width: 80px; border-top: 3px solid #ff416c;">
+    <p class="mb-4 text-muted" style="max-width: 600px; margin: auto;">
+        Saborea calidad, frescura y confianza. Desde cortes premium hasta paquetes especiales para tu parrilla.
+    </p>
+    <div class="d-flex justify-content-center gap-3">
+        <a href="{{ url_for('auth.login') }}" class="btn btn-lg btn-gradient px-4" style="background: linear-gradient(90deg, #ff416c, #ff4b2b); color: white; font-weight: 600; border-radius: 50px; box-shadow: 0 6px 12px rgba(255, 75, 43, 0.4); transition: transform 0.3s ease;">
+            Iniciar Sesión
+        </a>
+        <a href="{{ url_for('auth.register') }}" class="btn btn-lg btn-outline-danger px-4 fw-semibold" style="border-radius: 50px; border-width: 2px; transition: background-color 0.3s ease, color 0.3s ease;">
+            Registrarse
+        </a>
+    </div>
+</div>
+
+<style>
+    a.btn-gradient:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 20px rgba(255, 75, 43, 0.6);
+        color: #fff;
+        text-decoration: none;
+    }
+    a.btn-outline-danger:hover {
+        background-color: #ff4b2b;
+        color: white !important;
+        text-decoration: none;
+        border-color: #ff4b2b !important;
+    }
+</style>
+{% endblock %}
